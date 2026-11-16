@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Events</title>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+Name:
+<input type="text" id="name" oninput="checkName()">
+<p id="nameMsg"></p>
+
+Email:
+<input type="email" id="email" oninput="checkEmail()">
+<p id="emailMsg"></p>
+
+Password:
+<input type="password" id="pass" oninput="checkPass()">
+<p id="passMsg"></p>
+
+<button onclick="submitForm()">Register</button>
+
+<p id="result"></p>
+
+<script>
+
+function checkName() {
+    let name = document.getElementById("name").value;
+    document.getElementById("nameMsg").innerText = "Hello " + name;
+}
+
+function checkEmail() {
+    let email = document.getElementById("email");
+    let msg = document.getElementById("emailMsg");
+
+    if (email.validity.valid && email.value != "") {
+        msg.innerText = "Valid Email";
+        msg.style.color = "green";
+    } else {
+        msg.innerText = "Invalid Email";
+        msg.style.color = "red";
+    }
+}
+
+function checkPass() {
+    let pass = document.getElementById("pass").value;
+    let msg = document.getElementById("passMsg");
+
+    if (pass.length >= 6) {
+        msg.innerText = "Strong enough password";
+        msg.style.color = "green";
+    } else {
+        msg.innerText = "Minimum 6 characters required";
+        msg.style.color = "red";
+    }
+}
+
+function submitForm() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email");
+    let pass = document.getElementById("pass").value;
+    let result = document.getElementById("result");
+
+    if (name == "" || email.value == "" ||
+        !email.validity.valid || pass.length < 6) {
+        result.innerText = "Please enter valid details";
+        result.style.color = "red";
+    } else {
+        result.innerText = "Registration Successful!";
+        result.style.color = "green";
+    }
+}
+
+</script>
+
+</body>
+</html>
